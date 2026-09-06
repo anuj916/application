@@ -1,30 +1,29 @@
-type ProfileCardProps = {
-  name: string;
-  role: string;
-  skills: string[];
-  isOnline: boolean;
-};
+import Card from "./components/card";
 
-export default function ProfileCard({
-  name,
-  role,
-  skills,
-  isOnline,
-}: ProfileCardProps) {
+export default function App() {
   return (
     <div>
-      <h2>{name}</h2>
-      <p>Role: {role}</p>
-
-      <p>Status: {isOnline ? "Online" : "Offline"}</p>
-
-      <h3>Skills:</h3>
-
-      <ul>
-        {skills.map((skill, index) => (
-          <li key={index}>{skill}</li>
-        ))}
-      </ul>
+      <Card
+        user={{
+          name: "Anuj Subedi",
+          role: "intern",
+        }}
+        isOnline={true}
+      />
+      <Card
+        user={{
+          name: "bob",
+          role: "software engineer",
+        }}
+        isOnline={true}
+      />
+      <Card
+        user={{
+          name: "ram",
+          role: "developer",
+        }}
+        isOnline={false}
+      />
     </div>
   );
 }
