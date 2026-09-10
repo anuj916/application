@@ -1,40 +1,35 @@
 import Button from "./Button";
 
-type UserCardProps = {
-  user: {
+type CardProps = {
+  entity: {
+    id: number;
     name: string;
-    role: string;
+    extraproperty?: any;
   };
-  isOnline?: boolean;
+  boolValue?: boolean;
 };
 
-export default function Card({ user, isOnline = false }: UserCardProps) {
-  function conditionalButtonRendering() {
-    if (isOnline) {
-      return (
-        <Button
-          text="Praise"
-          variant="primary"
-          onClick={() => alert("Great job!")}
-        />
-      );
-    } else {
-      return (
-        <Button
-          text="Nudge"
-          variant="secondary"
-          onClick={() => alert("Please come online")}
-        />
-      );
-    }
-  }
-
+export default function Card({
+  entity,
+  boolValue = false,
+}: CardProps) {
   return (
     <div>
-      <h1>{user.name}</h1>
-      <p>{user.role}</p>
+      <h2 className="font-bold text-5xl text-black">
+        {entity.extraproperty}
+      </h2>
 
-      {conditionalButtonRendering()}
+      <h3 className="font-bold text-2xl text-blue-500">
+        {entity.name}
+      </h3>
+
+      <p
+        className={
+          boolValue ? "text-green-400" : "text-red-400"
+        }
+      >
+        {boolValue ? "✅ Completed" : "❌ Not Completed"}
+      </p>
     </div>
   );
 }
